@@ -36,7 +36,13 @@ while True:
             exit()
         
         pass
+        
 
+        if event.type == pygame.A:
+            player_rect
+
+
+            pass
     
     screen.fill((30,30,50))
 
