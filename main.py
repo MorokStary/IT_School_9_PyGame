@@ -19,31 +19,63 @@ clock = pygame.time.Clock()# < -----------
 
 
 #_______PLAYER_SPRITE______
-player_speed = 5
-
+player_speed = 7
+is_down = False # 
 player_surface = pygame.image.load("Asset/player.png") # .convert_alpha()
 player_rect = player_surface.get_rect(center=(SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
 
-#__________________________
-
-
+#____MAIN LOOP_________
 while True:
     
     
     
-    # ___________________________________________________
-    keys = pygame.key.get_pressed()
-    
-    direction = pygame.math.Vector2(0, 0)
-    direction.x = keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]
-    direction.y = keys[pygame.K_DOWN] - keys[pygame.K_UP]
+    ## ______________Movement_______________________
+    #keys = pygame.key.get_pressed()
+    #
+    #direction = pygame.math.Vector2(0, 0)
+    #direction.x = keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]
+    #direction.y = keys[pygame.K_DOWN] - keys[pygame.K_UP]
+    #
+    #if direction.length() > 0:
+    #    direction = direction.normalize()
+#
+#
+    #direction.x = direction.x * player_speed
+    #direction.y = direction.y * player_speed
+    #
+    #player_rect.x += direction.x
+    #player_rect.y += direction.y
 
+
+
+    # ______________Movement_______________________
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        is_down = not is_down # False + not - True |   True + not = False
+        pygame.time.delay(100)
+    direction = pygame.math.Vector2(0, 0)
+    
+    if is_down:
+        direction.y += 1
+    else:
+        direction.y -= 1
+
+        
+    
     if direction.length() > 0:
         direction = direction.normalize()
+    
+    player_rect.y+=direction.y*player_speed
 
-    player_rect+= direction + player_speed
 
-    # ___________________________________________________
+
+    #direction.x = direction.x * player_speed
+    #direction.y = direction.y * player_speed
+    #
+    #player_rect.x += direction.x
+    #player_rect.y += direction.y
+
+    # ______________Events________________________
 
 
 
